@@ -1,0 +1,54 @@
+<html>
+<title>MathJax Dynamic Math Test Page</title>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [["$","$"],["\\(","\\)"]]
+    }
+  });
+</script>
+<script type="text/javascript" src="./bower_components/MathJax/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<script type="text/javascript" src="./bower_components/vue/dist/vue.min.js"></script>
+
+</head>
+<body>
+<div id="demo">
+  <textarea rows="4" cols="50" v-model="message"></textarea>
+</div>
+
+<div id="MathOutput">
+  ${c ^ 2 = a ^ 2 + b ^ 2}$
+</div>
+
+<script>
+  (function () {
+    var QUEUE = MathJax.Hub.queue;
+    var math = null;
+
+    QUEUE.Push(function () {
+      math = MathJax.Hub.getAllJax("MathOutput")[0];
+    });
+
+    window.UpdateMath = function (TeX) {
+      QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
+    }
+    var demo = new Vue({
+      el: '#demo',
+      data: {
+        message: 'c ^ 2 = a ^ 2 + b ^ 2'
+      },
+      watch: {
+        'message': function (val, oldVal) {
+           UpdateMath(val);
+        }
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
+

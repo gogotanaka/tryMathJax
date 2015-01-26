@@ -1,0 +1,19 @@
+{
+  "name": "tryMathjax",
+  "version": "0.0.0",
+  "authors": [
+    "gogotanaka <mail@tanakakazuki.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "MathJax": "~2.4.0",
+    "vue": "~0.11.4"
+  }
+}
